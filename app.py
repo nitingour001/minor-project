@@ -2,9 +2,9 @@ import streamlit as st
 import pickle
 from features import extract_features
 
-st.set_page_config(page_title='Phishing URL Detector', page_icon='🔒')
+st.set_page_config(page_title='Phishing URL Detector', page_icon='')
 
-st.title('🔒 Phishing URL Detection Tool')
+st.title(' Phishing URL Detection Tool')
 st.write('Enter a URL to predict whether it is **Phishing** or **Legitimate**.')
 
 @st.cache_resource
@@ -20,7 +20,7 @@ if st.button('Analyze'):
     feats = extract_features(url)
     proba = model.predict_proba([feats])[0]
     pred = int(model.predict([feats])[0])
-    label = 'Legitimate ✅' if pred == 1 else 'Phishing ⚠️'
+    label = 'Legitimate ' if pred == 1 else 'Phishing '
     st.subheader(f'Result: {label}')
     st.caption(f'Confidence (Legitimate vs Phishing): {proba[1]:.2%} vs {proba[0]:.2%}')
 
